@@ -85,6 +85,7 @@ h1 {
 	line-height: 1.2;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
+	color: red;
 }
 
 h1, h2, h3 {
