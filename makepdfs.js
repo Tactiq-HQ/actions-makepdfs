@@ -2,7 +2,7 @@
 
 const markdown_dir = process.env.INPUT_MARKDOWN_DIR;
 const output_dir = process.env.INPUT_OUTPUT_DIR;
-const page_breaks_h1 = process.env.INPUT_PAGE_BREAKS_H1;
+const additional_css = process.env.INPUT_ADDITIONAL_CSS;
 
 'use strict';
 var fs = require( 'fs' );
@@ -25,10 +25,7 @@ function showErrorMessage(msg, error) {
 function makeHtml(data) {
 	try {
 		// read files that make up template
-		let pdfStylesheet = fs.readFileSync("/styles/markdown-pdf.css", ).toString('utf-8');
-		if (page_breaks_h1.toString() === 'true') pdfStylesheet = pdfStylesheet.replace('/*page_breaks_h1*/', 'page-break-before: always; ');
-
-		var style = fs.readFileSync("/styles/markdown.css", ).toString('utf-8') + pdfStylesheet;
+		var style = fs.readFileSync("/styles/markdown.css", ).toString('utf-8') + fs.readFileSync("/styles/markdown-pdf.css", ).toString('utf-8') + (additional_css || '');
 		var template = fs.readFileSync("/template/template.html").toString('utf-8');
 		// compile template
 		var mustache = require('mustache');
