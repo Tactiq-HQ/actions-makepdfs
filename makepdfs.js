@@ -26,7 +26,7 @@ function makeHtml(data) {
 	try {
 		// read files that make up template
 		let pdfStylesheet = fs.readFileSync("/styles/markdown-pdf.css", ).toString('utf-8');
-		if (page_breaks_h1 === 'true') pdfStylesheet = pdfStylesheet.replace('/*page_breaks_h1*/', 'page-break-before: always; ');
+		if (page_breaks_h1.toString() === 'true') pdfStylesheet = pdfStylesheet.replace('/*page_breaks_h1*/', 'page-break-before: always; ');
 		
 		var style = fs.readFileSync("/styles/markdown.css", ).toString('utf-8') + pdfStylesheet;
 		var template = fs.readFileSync("/template/template.html").toString('utf-8');
