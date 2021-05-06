@@ -15,6 +15,10 @@ inputs:
     description: 'Location to output PDF files to'
     required: true
     default: 'tmp'
+  page_breaks_h1:
+    description: 'Whether to insert page breaks before H1 headings'
+    required: false
+    default: 'true'
 
 branding:
   icon: 'activity'
