@@ -5,10 +5,13 @@ RUN apt-get update && \
       libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 \
       libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 \
       libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 \
-      libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget curl && \
+      libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget curl chromium && \
     rm -rf /var/lib/apt/lists/*
 
-RUN npm install puppeteer@5.2.1 markdown-it mustache markdown-it-named-headers cheerio markdown-it-highlightjs
+RUN export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+RUN export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+
+RUN npm install puppeteer@9.1.1 markdown-it mustache markdown-it-named-headers cheerio markdown-it-highlightjs
 COPY makepdfs.js /
 COPY package.json /
 COPY template/ template/
